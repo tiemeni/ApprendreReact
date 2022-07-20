@@ -1,7 +1,8 @@
+import { useSelector } from "react-redux"
 
 
-const ListePersonnel = (props) => {
-    
+const ListePersonnel = () => {
+    const users = useSelector(state=>state.Users.users)
     const style = {
         container: {
             border: "1px solid gray",
@@ -13,11 +14,10 @@ const ListePersonnel = (props) => {
             letterSpacing: 1
         }
     }
-
     return (
         <>
             {  // je boucle sur les personnes recu depuis le parent 
-                props.personnes.map((personne, i) => {
+                users.map((personne, i) => {
                     return (
                         <div style={style.container} key={i}>
                             <p style={style.label}>Nom : {personne.nom}</p>

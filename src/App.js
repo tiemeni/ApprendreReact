@@ -1,12 +1,16 @@
+import { Provider } from "react-redux";
 import Parent from "./components/Parents";
+import store from "./redux/setup/store";
 
 
 function App() {
 
   return (
-    <div>
+    <Provider store={store}>
+      <div>
         <Parent />
-    </div>
+      </div>
+    </Provider>
   );
 }
 

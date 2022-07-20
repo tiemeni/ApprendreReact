@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { saveUser } from "../redux/commons/actions"
 
 
 const Formulaire = (props) => {
@@ -11,6 +13,7 @@ const Formulaire = (props) => {
         femme: true,
         check: true
     })
+    const dispatcher = useDispatch()
 
     const handleChange = e => {
         setFields({
@@ -59,7 +62,7 @@ const Formulaire = (props) => {
     const handleSubmit = e => {
         if (disabled) {
         } else {
-            props.getPersonne(fields)
+            dispatcher(saveUser(fields))
             setFields({
                 nom: "",
                 prenom: "",
@@ -100,7 +103,7 @@ const Formulaire = (props) => {
                         id="homme"
                         name="homme"
                         checked={fields.homme}
-                        onClick={() => setFields({
+                        onChange={() => setFields({
                             ...fields,
                             homme: true,
                             femme: false
@@ -113,7 +116,7 @@ const Formulaire = (props) => {
                         id="femme"
                         name="femme"
                         checked={fields.femme}
-                        onClick={(e) => setFields({
+                        onChange={(e) => setFields({
                             ...fields,
                             homme: false,
                             femme: true
